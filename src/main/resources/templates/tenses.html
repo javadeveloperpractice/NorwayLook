@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>NorwayLook-Tenses</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/tenses.css">
+</head>
+<body>
+
+	<header>
+		<h1>NorwayLook</h1>
+		
+		<p>Тут ви зможете знайти правила граматики часів Норвезької мови</p>
+
+		<nav>
+			<ul>
+				<li><a href="/norwaylook/gramatics-past-tensen">Минулий час</a></li>
+				<li><a href="/norwaylook/gramatics-present-tensen">Теперішній час</a></li>
+				<li><a href="/norwaylook/gramatics-future-tensen-">Майбутній час</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section>	
+			
+			<p>Перейдемо до практики.Спробуй перевести речення на Норвезьку мову: </p>
+			<article id="exercise-text" th:text="${stringPastTensen}"></article>
+						
+			<form action="/norwaylook/tenses" method="post">
+				<textarea id="userString" name="userString" rows="4" placeholder="Введіть речення тут"></textarea>
+				<input type="hidden" name="originalString" th:value="${stringPastTensen}"/>
+				<button type="submit">Перевірити</button>
+			</form>
+			
+		</section>
+	</main>
+
+	<footer>
+		<h3>Можете переходити до наступної теми</h3>
+	</footer>
+
+</body>
+</html>
