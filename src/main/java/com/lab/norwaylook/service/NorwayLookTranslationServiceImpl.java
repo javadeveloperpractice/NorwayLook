@@ -1,37 +1,36 @@
 package com.lab.norwaylook.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lab.norwaylook.model.Sentence;
+import com.lab.norwaylook.config.MyConfigurationFileForWords;
 
 @Service
 public class NorwayLookTranslationServiceImpl implements NorwayLookTranslationService {
-	
-	private Sentence sentence;
+
+	@Autowired
+	private MyConfigurationFileForWords myConfigurationFileForWords;
+	private final Random random = new Random();
+
 
 	@Override
-	public String getPastTensenString() {
+	public Map<String, List<String>> getListOfWorldsMethod() {
 		
-		List<Sentence> pastTensenString = new ArrayList<>();
-		pastTensenString.add(new Sentence("Я був вдома", List.of("Jeg var hjemme")));
-		pastTensenString.add(new Sentence("Вона була вдома", List.of("Hun var hjemme")));
-		pastTensenString.add(new Sentence("Вони були вдома", List.of("De var hjemme")));
-		pastTensenString.add(new Sentence("Ми були вдома", List.of("Vi var hjemme")));
+		Map<String, List<String>> listOfWords = myConfigurationFileForWords.getListOfWords();	
 		
-		Random random = new Random();
-		Sentence randomSentence = pastTensenString.get(random.nextInt(pastTensenString.size()));
+		System.out.println(listOfWords.keySet());
 		
-		return randomSentence.toString();
+		return listOfWords;
 	}
 
 	@Override
 	public boolean checkTranslation(String userString, String originalString) {
-		// TODO Auto-generated method stub		
-		return sentence.check(userString);
+
+		return false;
 	}
 
 }

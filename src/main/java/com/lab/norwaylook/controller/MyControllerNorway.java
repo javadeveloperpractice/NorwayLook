@@ -11,32 +11,34 @@ import com.lab.norwaylook.service.NorwayLookTranslationService;
 
 @Controller
 public class MyControllerNorway {
-	
-	@Autowired
-	private NorwayLookTranslationService norwayLookTranslationService;
-	
-	@GetMapping ("/norwaylook")
-	public String getFirstNorway() {
-		return "norwaylook";
-	}
-	
-	@GetMapping ("/norwaylook/tenses") 
-	public String getTensen(Model model) {		
-		String stringPastTensen = norwayLookTranslationService.getPastTensenString();
-		model.addAttribute("stringPastTensen", stringPastTensen);	
-		return "tenses";
-	}
-	
-	@PostMapping ("/norwaylook/tenses")
-	public String getTensenPractice(@RequestParam("userString") String userString, 
-			@RequestParam("originalString") String originalString, Model model) {
-		
-		boolean correct = norwayLookTranslationService.checkTranslation(userString,
-				originalString);
-		model.addAttribute("correct", correct);
-		model.addAttribute("userText", userString);
-		model.addAttribute("originalString", originalString);
-		
-		return "tenses";
-	}
+
+    @Autowired
+    private NorwayLookTranslationService norwayLookTranslationService;
+
+    @GetMapping("/norwaylook")
+    public String getFirstNorway() {
+        return "norwaylook";
+    }
+
+    @GetMapping("/norwaylook/tenses")
+    public String getTenses(Model model) {
+//        String stringPastTenses = norwayLookTranslationService.getWorldsMethod();
+//        model.addAttribute("stringPastTensen", stringPastTenses);
+        return "tenses";
+    }
+
+    @PostMapping("/norwaylook/tenses")
+    public String getTensesPractice(
+            @RequestParam("userString") String userString,
+            @RequestParam("originalString") String originalString,
+            Model model) {
+
+        boolean correct = norwayLookTranslationService.checkTranslation(userString, originalString);
+
+        model.addAttribute("correct", correct);
+        model.addAttribute("userText", userString);
+        model.addAttribute("originalString", originalString);
+
+        return "tenses";
+    }
 }
